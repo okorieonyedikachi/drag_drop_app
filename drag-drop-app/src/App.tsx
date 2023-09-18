@@ -1,12 +1,14 @@
-import LoginPage from "./Components/LoginPage"
+import LoginPage from "./Routes/LoginPage"
 import SignUp from "./Routes/SignUp"
+
 
 function App() {
   return (
     <>
-    <LoginPage/>
-    <SignUp/>
-    </>
+      {/* <LoginPage/>
+      <SignUp/> */}
+    </>  
+
   )
 }
 
