@@ -5,7 +5,7 @@ import twitter from "../assets/twitter.svg";
 
 const Footer = () => {
   return (
-    <div className="flex justify-center mt-10 text-white bottom0 ">
+    <div className="flex justify-center mt-10 text-white   ">
       <div className="max-sm:w-full w-2/4 flex flex-col items-center ">
         <div className="flex gap-6">
           <a href=""><img src={instagram}/></a>
