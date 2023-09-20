@@ -1,36 +1,20 @@
 import { useRef, useState } from "react";
-import photos from "./photos.json"
-// import { Image1 } from "/public/IMG_3551.png";
+import {motion} from "framer-motion"
 
-const DragGrid = () => {
-  const data = [
-    
-       {id:1,tag:"danny"},
-        {id:2, tag: "emeka"}
-    
-    
-    
-  ]
-
+const DragGrid = (props) => {
+  const {data} = props
   const [imageItems, setImageItems] = useState(data);
-
-
+  // console.log(imageItems);
+  
   // save reference for dragItem and dragOverItem
   const dragItem = useRef<any>(null);
   const dragOverItem = useRef<any>(null);
 
   // handle drag sorting
   const handleSort = () => {
-    //duplicate items
     const _imageItems = [...imageItems];
-
-    //remove and save the dragged item content
     const draggedItemContent = _imageItems.splice(dragItem.current, 1)[0];
-
-    // switch positions
     _imageItems.splice(dragOverItem.current, 0, draggedItemContent);
-
-    //reset position ref
     dragItem.current = null;
     dragOverItem.current = null;
 
@@ -38,28 +22,55 @@ const DragGrid = () => {
     setImageItems(_imageItems);
   };
 
+  const handleTouchStart = (e, index) => {
+    e.preventDefault();
+    dragItem.current = index;
+  };
+
+  const handleTouchMove = (e, index) => {
+    e.preventDefault();
+    if (dragItem.current !== null) {
+      dragOverItem.current = index;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (dragItem.current !== null) {
+      handleSort();
+    }
+  };
+
+  
+
   return (
-    <div className="bg-blue-70">
-      <div className="w-10/12 h-full flex flex-wrap justify-center gap-8 m-auto bg-red-00 p-6">
-        {imageItems.map((item, index) => (
-          <div
+    <motion.div className="bg-re=d-700"
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      transition={{delay: 1, duration: 1.5}}
+    >
+      <div className="w-11/12  h-full flex flex-wrap justify-center gap-8 m-auto bg-red-00 p-6">
+        {imageItems.map((data, index) => (
+          <motion.div
+            whileHover={{scale: 1.1, boxShadow: "0px 0px 8px rgb(128,128,128)"}}
             key={index}
-            className={`bg-orange-400  rounded-lg h-96 w-72 cursor-move
-            ${dragItem.current == index ? "animate-bounce" : ""}
+            className={`bg-oange-400 shadow-md  rounded-lg  h-96 w-64 cursor-move
+            ${dragItem.current == "" ? "animate-bounce" : ""}
                ${(dragOverItem.current = index ? "" : "")}`}
             draggable
             onDragStart={(e) => (dragItem.current = index)}
             onDragEnter={(e) => (dragOverItem.current = index)}
             onDragEnd={handleSort}
             onDragOver={(e) => e.preventDefault}
+            onTouchStart={(e) => handleTouchStart(e, index)}
+            onTouchMove={(e) => handleTouchMove(e, index)}
+            onTouchEnd={handleTouchEnd}
           >
-            {item.tag}
-            {/* <img src="/IMG_3551.png"  className="w-full h-11/12"></img> */}
-            <p>tag</p>
-          </div>
+            <img src={data?.image} className=" w-full rounded-t-lg h-80"></img>
+            <p className="font-bold text-2xl px-4">{data?.tag}</p>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

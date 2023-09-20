@@ -16,7 +16,8 @@ const LoginPage = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential)=>{
         console.log(userCredential)
-        navigate ("/homepage");
+        navigate ("/");
+        
     }).catch((error =>{
         console.log(error);
         setError('Login details are incorrect')
@@ -34,7 +35,7 @@ const LoginPage = () => {
 
 
   return (
-    <div className="w-full h-screen bg-cover bg-center bg-[url('/IMG_3551.png')] flex items-center justify-end max-sm:w-screen max-sm:">
+    <div className="w-full h-screen bg-cover bg-center bg-[url('/IMG_3551.png')] flex items-center justify-end max-sm:w-screen max-sm: font-custom text-xl">
       <div className="w-1/3 h-4/5 mr-16 bg-zinc-700 flex justify-center items-center rounded-xl text-white opacity-80 max-sm:w-11/12 max-sm:mx-auto ">
         <section className="w-9/12 h-5/6 bg-re-200 flex flex-col justify-center">
           <p className="text-2xl mx-auto">
