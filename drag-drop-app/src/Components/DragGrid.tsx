@@ -1,8 +1,19 @@
 import { useRef, useState } from "react";
-import "./DragGrid.css"
+import photos from "./photos.json"
+// import { Image1 } from "/public/IMG_3551.png";
 
 const DragGrid = () => {
-  const [imageItems, setImageItems] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
+  const data = [
+    
+       {id:1,tag:"danny"},
+        {id:2, tag: "emeka"}
+    
+    
+    
+  ]
+
+  const [imageItems, setImageItems] = useState(data);
+
 
   // save reference for dragItem and dragOverItem
   const dragItem = useRef<any>(null);
@@ -26,21 +37,23 @@ const DragGrid = () => {
     //update the array
     setImageItems(_imageItems);
   };
-  
+
   return (
     <div className="bg-blue-70">
       <div className="w-10/12 h-full flex flex-wrap justify-center gap-8 m-auto bg-red-00 p-6">
         {imageItems.map((item, index) => (
           <div
             key={index}
-            className="bg-orange-400  rounded-lg h-96 w-72 cursor-move"
+            className={`bg-orange-400  rounded-lg h-96 w-72 cursor-move
+            ${dragItem.current == index ? "animate-bounce" : ""}
+               ${(dragOverItem.current = index ? "" : "")}`}
             draggable
             onDragStart={(e) => (dragItem.current = index)}
             onDragEnter={(e) => (dragOverItem.current = index)}
             onDragEnd={handleSort}
             onDragOver={(e) => e.preventDefault}
           >
-            {item}
+            {item.tag}
             {/* <img src="/IMG_3551.png"  className="w-full h-11/12"></img> */}
             <p>tag</p>
           </div>
