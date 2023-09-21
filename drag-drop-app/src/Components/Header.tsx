@@ -3,34 +3,30 @@ import user from "../assets/User.svg";
 import {data} from "../data";
 import {motion} from "framer-motion"
 
-const Header = ({ onDataUpdate }) => {
 
-  const [imageItems, setImageItems] = useState(data);
+
+const Header = ({ onSearch }) => {
+
+  const [imageItems, setImageItems] = useState<{}>(data);
   const [inputText, setInputText] = useState("");
 
   const handleInput = (e) => {
     const input = e.target.value;
     setInputText(input)
-
+    onSearch(input)
+    
     // const filterData = data.filter((element) => {
     //   if (input.trim() !== ""){
-    //     return setImageItems
+        
     //   } else {
     //     return input
     //   }
     // })
-    // console.log(filterData);
+    // console.log(onDataUpdate);
     
     
   };
-  // if (input.trim() !== "") {
-    //   data.filter((element) => {
 
-    //   })
-    // }
-  // const filterData = data.filter((element) => {
-    
-  // });
 
   return (
     <motion.div className=""
