@@ -72,7 +72,7 @@ const DragGrid: React.FC<Grid> = ({data})=> {
             key={index}
             className={`bg-oange-400 shadow-md  rounded-lg  h-96 w-64 cursor-move
             `}
-            draggable
+            draggable 
             // onDragStart={(e) => (dragItem.current = index)}
             // onDragEnter={(e) => (dragOverItem.current = index)}
             // onDragEnd={() => handleSort()}
