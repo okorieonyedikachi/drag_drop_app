@@ -2,7 +2,6 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import { useRef, useState,useEffect } from "react";
 import {motion} from "framer-motion"
-import { GridItem } from "react-grid-dnd";
 import Sortable from "sortablejs"
 
 interface GridItem {
