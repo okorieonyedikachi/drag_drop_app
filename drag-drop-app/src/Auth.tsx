@@ -1,5 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import {auth} from "./Firestore"
+import { User } from "firebase/auth";
+
+interface AuthProps {
+    currentUser: User | null; // Assuming User is the type for your user data
+    signIn: (email: string, password: string) => Promise<void>;
+    login: (email: string, password: string) => Promise<void>;
+
+}
 
 const AuthContext = React.createContext()
 
@@ -7,22 +15,24 @@ export function useAuth(){
     return useContext(AuthContext)
 }
 
-export const AuthProvider = ({children}) => {
-    const [currentUser, setCurrentUser] = useState()
+export const AuthProvider = ({children}:AuthProps) => {
+    const [currentUser, setCurrentUser] = useState<User | null>()
     
-    const signIn = (email,password) => {
-        return auth.createUserWithEmailAndPassword(email, password)
+   
+    const signIn = (email:string,password:string):Promise<void>=> {
+            return auth.createUserWithEmailAndPassword(email, password)
+    
     }
 
-    const login = (email, password) =>{
+    const login = (email:string, password:string): Promise<AuthProps>=>{
         return auth.signInWithEmailAndPassword( email, password)
     }
 
-    useEffect(()=> {
+    useEffect(():Promise<AuthProps>=> {
        const unsubscribe =  auth.onAuthStateChanged(user => {
         setCurrentUser(user)
     })
-        return unsubscribe
+        return() => {unsubscribe }; 
     },[])
 
     

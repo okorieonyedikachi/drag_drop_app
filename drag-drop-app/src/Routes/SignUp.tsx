@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom"
 import { useState } from "react";
-import {auth} from "../Firestore"
-import {createUserWithEmailAndPassword} from "firebase/auth";
 import { useAuth } from "../Auth";
 
 const SignIn = () => {
@@ -14,7 +12,7 @@ const SignIn = () => {
   const handleSignIn = async () => {
     signIn(newEmail, newPassword)
 
-    .catch((error =>{
+    .catch(((error: string) =>{
         console.log(error);
     }))
   }
@@ -56,7 +54,7 @@ const SignIn = () => {
           </button>
           <div className="flex items-center flex-col mt-10">
             <p>Already have an account?</p>
-            <Link to="/login"><p className="text-orange-400 text-lg font-semibold">Log In</p></Link>
+            <Link to="/"><p className="text-orange-400 text-lg font-semibold">Log In</p></Link>
           </div>
         </section>
       </div>
