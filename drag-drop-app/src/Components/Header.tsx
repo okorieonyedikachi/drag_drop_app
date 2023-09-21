@@ -1,16 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import user from "../assets/User.svg";
-import {data} from "../data";
 import {motion} from "framer-motion"
 
 
 
-const Header = ({ onSearch }) => {
+const Header = ({ onSearch }:any) => {
 
-  const [imageItems, setImageItems] = useState<{}>(data);
   const [inputText, setInputText] = useState("");
 
-  const handleInput = (e) => {
+  const handleInput = (e: { target: { value: any; }; }) => {
     const input = e.target.value;
     setInputText(input)
     onSearch(input)

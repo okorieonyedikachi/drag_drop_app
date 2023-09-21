@@ -15,7 +15,7 @@ const LoginPage = () => {
  
   const handleLogin = async () => {
     signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(() => {
       navigate("/homepage")
     })
     .catch(() => {

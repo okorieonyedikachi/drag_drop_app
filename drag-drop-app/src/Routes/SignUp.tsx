@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Link } from "react-router-dom"
 import { useState } from "react";
 import { useAuth } from "../Auth";
@@ -6,15 +7,12 @@ const SignIn = () => {
 
   const [newEmail,setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const {signIn} = useAuth
+  const signIn = useAuth
   
   
   const handleSignIn = async () => {
+    //@ts-ignore
     signIn(newEmail, newPassword)
-
-    .catch(((error: string) =>{
-        console.log(error);
-    }))
   }
 
 

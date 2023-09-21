@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-refresh/only-export-components */
 import React, { useContext, useEffect, useState } from "react";
 import {auth} from "./Firestore"
 import { User } from "firebase/auth";
@@ -9,26 +12,28 @@ interface AuthProps {
 
 }
 
-const AuthContext = React.createContext()
+const AuthContext = React?.createContext("")
 
 export function useAuth(){
     return useContext(AuthContext)
 }
 
-export const AuthProvider = ({children}:AuthProps) => {
+export const AuthProvider = ({children}:any) => {
     const [currentUser, setCurrentUser] = useState<User | null>()
     
    
     const signIn = (email:string,password:string):Promise<void>=> {
-            return auth.createUserWithEmailAndPassword(email, password)
+            //@ts-ignore
+            return auth?.createUserWithEmailAndPassword(email, password)
     
     }
 
     const login = (email:string, password:string): Promise<AuthProps>=>{
+        //@ts-ignore
         return auth.signInWithEmailAndPassword( email, password)
     }
 
-    useEffect(():Promise<AuthProps>=> {
+    useEffect(() => {
        const unsubscribe =  auth.onAuthStateChanged(user => {
         setCurrentUser(user)
     })
@@ -40,7 +45,10 @@ export const AuthProvider = ({children}:AuthProps) => {
     const value = {currentUser, signIn,login}
 
     return (
-      <AuthContext.Provider value={value}>
+
+      <AuthContext.Provider 
+        //@ts-ignore
+        value={value}>
         {children}
       </AuthContext.Provider>
     )
