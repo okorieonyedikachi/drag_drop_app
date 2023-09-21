@@ -1,8 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import {auth} from "../Firestore"
 import {signInWithEmailAndPassword} from "firebase/auth";
-
+import { useState } from "react";
 
 
 const LoginPage = () => {
@@ -12,27 +11,18 @@ const LoginPage = () => {
   const navigate = useNavigate()
 
 
+  
+ 
   const handleLogin = async () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential)=>{
-        console.log(userCredential)
-        navigate ("/");
-        
-    }).catch((error =>{
-        console.log(error);
-        setError('Login details are incorrect')
-    }))
-  }
-
+    .then((userCredential) => {
+      navigate("/homepage")
+    })
+    .catch(() => {
+      setError("Incorrect Login deatils")
+    });
   
-  // Check if the user is already authenticated
-  // const user = auth.currentUser;
-
-  // // If the user is authenticated, redirect to the homepage
-  // if (user) {
-  //   navigate('/homepage');
-  // }
-
+  }
 
   return (
     <div className="w-full h-screen bg-cover bg-center bg-[url('/IMG_3551.png')] flex items-center justify-end max-sm:w-screen max-sm: font-custom text-xl">
@@ -63,6 +53,7 @@ const LoginPage = () => {
           </div>
           <button className="bg-orange-400 h-10 w-5/6 mx-auto mt-4 rounded-md font-semibold"
           onClick={handleLogin}
+          
           >
             Login
           </button>

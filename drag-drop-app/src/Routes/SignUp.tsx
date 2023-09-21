@@ -2,18 +2,19 @@ import { Link } from "react-router-dom"
 import { useState } from "react";
 import {auth} from "../Firestore"
 import {createUserWithEmailAndPassword} from "firebase/auth";
+import { useAuth } from "../Auth";
 
-const SignUp = () => {
+const SignIn = () => {
 
   const [newEmail,setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
-
+  const {signIn} = useAuth
   
-  const handleSignUp = async () => {
-    createUserWithEmailAndPassword(auth, newEmail, newPassword)
-      .then((userCredential)=>{
-        console.log(userCredential)
-    }).catch((error =>{
+  
+  const handleSignIn = async () => {
+    signIn(newEmail, newPassword)
+
+    .catch((error =>{
         console.log(error);
     }))
   }
@@ -32,6 +33,7 @@ const SignUp = () => {
             <input
               value={newEmail}
               onChange={(e) => setNewEmail(e.target.value)}
+              
               type="email"
               placeholder="Email"
               className="w-full h-10 rounded-md px-2 text-black"
@@ -48,13 +50,13 @@ const SignUp = () => {
             <p className="text-sm text-gray-400 mt-1">Forgotten Password?</p>
           </div>
           <button className="bg-orange-400 h-10 w-5/6 mx-auto mt-4 rounded-md font-semibold"
-            onClick={handleSignUp}
+            onClick={handleSignIn}
           >
             Sign In
           </button>
           <div className="flex items-center flex-col mt-10">
             <p>Already have an account?</p>
-            <Link to="/"><p className="text-orange-400 text-lg font-semibold">Log In</p></Link>
+            <Link to="/login"><p className="text-orange-400 text-lg font-semibold">Log In</p></Link>
           </div>
         </section>
       </div>
@@ -62,4 +64,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignIn

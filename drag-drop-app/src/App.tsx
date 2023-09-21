@@ -6,37 +6,25 @@ import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 
 function App() {
-  
-  
+
   return (
-    <Router>
-      
+
+    <AuthProvider>
+        <Router> 
+        <Routes>
+          
+          <Route exact path="/" element={<LoginPage/>} />
+          <Route  path="/signin" element={<SignUp/>}/>
+          <Route  path="/homepage" element= {<Homepage/>}/>
         
-      <Routes>
-        
-        <Route exact path="/" element={<Homepage/>} />
-        <Route  path="/signin" element={<SignUp/>}/>
-        <Route  path="/login" element= {<LoginPage/>}/>
-      
-      </Routes>
-     
-    </Router>  
+        </Routes>
+      </Router>  
+    </AuthProvider>
+    
   )
 }
 
 export default App
-
-
-
-// <Switch>
-      //   <Route path="/signup"> <SignUp/> </Route>
-      //   <Route path="/"> <LoginPage/> </Route>
-      //   <Route path="/homepage">
-      //     {user ? <Home /> : <Redirect to="/login" />}
-      //   </Route>
-      //   <Redirect to="/login" />
-      // </Switch>
-    
 
 
       
