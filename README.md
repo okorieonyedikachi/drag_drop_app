@@ -2,14 +2,14 @@
 Drag-and-Drop Gallery app is a web app built with React and Typescript that allows users to discover images using the tags on the search filter and also rearrange the images.
 # Current Features 
 1. Display movies        
-2. Reaarange images usign the drag and drop function
+2. Re-arrange images using the drag and drop function
 3. Filtering images with the search bar
  
 # Technologies Used 
 1. React Js
 2. Typescript
 3. Sortable Js 
-4. Framer Motiion
+4. Framer Motion
 
 # Getting Started 
 To run the drag and drop drop project locally, follow these steps 
