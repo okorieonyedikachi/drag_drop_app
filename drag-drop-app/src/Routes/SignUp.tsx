@@ -1,21 +1,30 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Link } from "react-router-dom"
 import { useState } from "react";
-import { useAuth } from "../Auth";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
-
-  const [newEmail,setNewEmail] = useState("");
+  const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const signIn = useAuth
-  
-  
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const auth = getAuth();
+
   const handleSignIn = async () => {
     //@ts-ignore
-    signIn(newEmail, newPassword)
-  }
+    // signIn(newEmail, newPassword)
 
-
+    createUserWithEmailAndPassword(auth, newEmail, newPassword)
+      .then((userCredential) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const user = userCredential.user;
+        navigate("/homepage");
+      })
+      .catch(() => {
+        setError("")
+        // ..
+      });
+  };
 
   return (
     <div className="w-full h-screen bg-cover bg-center bg-[url('/IMG_3551.png')] flex items-center justify-end max-sm:w-screen max-sm: font-custom text-xl">
@@ -29,7 +38,6 @@ const SignIn = () => {
             <input
               value={newEmail}
               onChange={(e) => setNewEmail(e.target.value)}
-              
               type="email"
               placeholder="Email"
               className="w-full h-10 rounded-md px-2 text-black"
@@ -45,19 +53,23 @@ const SignIn = () => {
             />
             <p className="text-sm text-gray-400 mt-1">Forgotten Password?</p>
           </div>
-          <button className="bg-orange-400 h-10 w-5/6 mx-auto mt-4 rounded-md font-semibold"
+          <button
+            className="bg-orange-400 h-10 w-5/6 mx-auto mt-4 rounded-md font-semibold"
             onClick={handleSignIn}
           >
             Sign In
           </button>
+          {error && <p className="text-red-600 mt-2 ml-8">{error}</p>}
           <div className="flex items-center flex-col mt-10">
             <p>Already have an account?</p>
-            <Link to="/"><p className="text-orange-400 text-lg font-semibold">Log In</p></Link>
+            <Link to="/">
+              <p className="text-orange-400 text-lg font-semibold">Log In</p>
+            </Link>
           </div>
         </section>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

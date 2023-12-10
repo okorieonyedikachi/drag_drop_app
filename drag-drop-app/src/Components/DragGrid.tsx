@@ -27,7 +27,7 @@ const DragGrid: React.FC<Grid> = ({data})=> {
  const sortableJsRef = useRef<any>(null);
   // console.log(imageItems);
  
-  console.log(gridRef.current); 
+  // console.log(gridRef.current); 
     const onListChange = () => {
       
       const newData = [...gridRef?.current?.children]
