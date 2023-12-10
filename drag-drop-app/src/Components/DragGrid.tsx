@@ -19,9 +19,6 @@ interface Grid {
 
 
 const DragGrid: React.FC<Grid> = ({data})=> {
-  // const data = props
-  // const [data, setData] = useState(data);
- 
  
  
  const [imageItems, setImageItems] = useState<GridItem[]>(data);
@@ -54,7 +51,7 @@ const DragGrid: React.FC<Grid> = ({data})=> {
   
   
  
-;
+
   
   
 
@@ -72,13 +69,6 @@ const DragGrid: React.FC<Grid> = ({data})=> {
             className={`bg-oange-400 shadow-md  rounded-lg  h-96 w-64 cursor-move
             `}
             draggable 
-            // onDragStart={(e) => (dragItem.current = index)}
-            // onDragEnter={(e) => (dragOverItem.current = index)}
-            // onDragEnd={() => handleSort()}
-            // onDragOver={(e) => e.preventDefault}
-            // onTouchStart={(e) => handleTouchStart(e, index)}
-            // onTouchMove={(e) => handleTouchMove(e, index)}
-            // onTouchEnd={handleTouchEnd}
           >
            
             <img src={item?.image} className=" w-full rounded-t-lg h-80"></img>
@@ -92,28 +82,3 @@ const DragGrid: React.FC<Grid> = ({data})=> {
 
 export default DragGrid;
 
-
- // save reference for dragItem and dragOverItem
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const dragItem = useRef<any>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const dragOverItem = useRef<any>(null);
-
-  // handle drag sorting
-  // const handleSort = () => {
-  //   console.log("dog");
-  //   const _imageItems = [...data];
-  //   const draggedItemContent = _imageItems.splice(dragItem.current, 1)[0];
-  //   _imageItems.splice(dragOverItem.current, 0, draggedItemContent);
-    
-  //   dragItem.current = null;
-  //   dragOverItem.current = null;
-   
-   
-    
-    
-  //   //update the array
-  //   setImageItems(_imageItems);
-  // };
-  
- 

@@ -25,7 +25,7 @@ const Header = ({ onSearch }:any) => {
     
     
   };
-
+ 
 
   return (
     <motion.div className=""

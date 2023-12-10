@@ -10,7 +10,7 @@ import image9 from "./assets/images/ 9.jpg"
 import image10 from "./assets/images/10.jpg"
 import image11 from "./assets/images/11.jpg"
 import image12 from "./assets/images/12.jpg"
-// import image9 from "../assets/images/1.jpeg"
+
 
 
 export const data = [
@@ -30,4 +30,3 @@ export const data = [
 
  
 ]
-// drag-drop-app/src/assets/images/ 13.png
