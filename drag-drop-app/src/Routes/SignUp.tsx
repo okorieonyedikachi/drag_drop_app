@@ -18,6 +18,8 @@ const SignIn = () => {
       .then((userCredential) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const user = userCredential.user;
+        console.log(user);
+        
         navigate("/homepage");
       })
       .catch(() => {
